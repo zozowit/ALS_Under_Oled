@@ -43,13 +43,16 @@ pause;
 
 %% =================== Part 3: Cost and Gradient descent ===================
 
-X = [ones(m, 1), data(:,1)]; % Add a column of ones to x
+X = [ones(m, 1), X]; % Add a column of ones to x
+
+X = [X, X(:,2).^2]
+
 theta = zeros(size(X, 2), 1); % initialize fitting parameters
 length(X)
 length(theta)
 % Some gradient descent settings
-iterations = 1500;
-alpha = 1;
+iterations = 1500000;
+alpha = 0.0000001;
 
 fprintf('\nTesting the cost function ...\n')
 % compute and display initial cost
@@ -57,7 +60,7 @@ J = computeCostMulti(X, y, theta);
 fprintf('With theta = [0 ; 0]\nCost computed = %f\n', J);
 
 % further testing of the cost function
-J = computeCostMulti(X, y, [-1 ; 2]);
+J = computeCostMulti(X, y, [-1 ; 2; 1]);
 fprintf('\nWith theta = [-1 ; 2]\nCost computed = %f\n', J);
 
 fprintf('Program paused. Press enter to continue.\n');
